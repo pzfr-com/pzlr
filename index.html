@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Séminaire 2025 – Programme</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <header class="bg-white shadow p-4 flex justify-center">
+    <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 h-auto" />
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl font-bold">Bienvenue <span id="nom" class="text-blue-600">Participant</span></h1>
+      <p class="text-gray-600">Voici votre programme complet pour le séminaire</p>
+	  <a href="livret-accueil.html">
+	  <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Livret d'accueil</button>
+	  </a>
+    </div>
+
+    <section class="bg-white shadow rounded-lg p-6 mb-10">
+      <h2 class="text-xl font-semibold mb-6 text-blue-700">📅 Mon agenda</h2>
+      <ol class="space-y-6" id="agenda">
+        <!-- Contenu injecté dynamiquement -->
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    const p = new URLSearchParams(window.location.search);
+    const get = (k) => p.get(k);
+
+    const nom = get("nom") || "Participant";
+    document.getElementById("nom").textContent = nom;
+
+    const agenda = document.getElementById("agenda");
+
+    const block = (classes, title, content = "", extra = "") => `
+      <li>
+        ${extra ? `<time class="block text-sm text-gray-500 font-medium mt-4 mb-1">${extra}</time>` : ""}
+        <div class="${classes} p-4 rounded-lg shadow-sm">
+          <p class="font-semibold text-gray-800">${title}</p>
+          ${content ? `<p class="text-sm text-gray-600">${content}</p>` : ""}
+        </div>
+      </li>
+    `;
+
+    const addBlock = (html) => {
+      agenda.insertAdjacentHTML('beforeend', html);
+    };
+
+    // Jour 1 - Lundi
+    addBlock(block("bg-blue-50", "14:00 – Safety induction", "Introduction welcome, déroulé, safety moment", "Lundi 8/09"));
+    addBlock(block("bg-blue-50", "14:30 – Contexte Primagaz", "Ecosystem de Primagaz aujourd'hui"));
+    addBlock(block("bg-blue-50", "15:10 – Look Back", "Mise à l’honneur collaborateurs / équipes"));
+    addBlock(block("bg-blue-50", "16:00 – Primagaz d'aujourd'hui à demain"));
+    addBlock(block("bg-green-50", "18:55 – Soirée", "1<sup>er</sup> retour : 23h25<br>2<sup>nd</sup> retour : 23h55"));
+
+    // Jour 2 - Mardi
+    addBlock(block("bg-blue-50", "9:00 – Safety", "", "Mardi 9/09"));
+    addBlock(block("border-l-4 border-blue-400 bg-white rounded-r-lg", "09:15 – Culture Managériale", "Notre Levier de Réussite (Postures, Pratiques, Performance)"));
+
+    const ateliers = ["At1", "At2", "At3"];
+    ateliers.forEach((at, i) => {
+      const salle = get(`J2_${at}_Salle`);
+      const table = get(`J2_${at}_Table`);
+      if (salle && table) {
+        addBlock(block("bg-white border-l-4 border-blue-400 rounded-r-lg", `Atelier ${i+1}`, `Salle : ${salle}, Table : ${table}`));
+      }
+    });
+
+    const team = get("J2_Team_Groupe");
+    if (team) {
+      addBlock(block("bg-white border-l-4 border-blue-400 rounded-r-lg", "14:15 – Team Building", `Groupe : ${team}`));
+    }
+
+    addBlock(block("bg-green-50", "18:15 – Inclusivité chez PZ"));
+    addBlock(block("bg-green-50", "20:45 – Soirée"));
+
+    // Jour 3 - Mercredi
+    const j3 = ateliers.map((at, i) => {
+      const salle = get(`J3_${at}_Salle`);
+      return salle ? `Atelier ${i+1} : <span class='font-medium text-blue-700'>${salle}</span>` : null;
+    }).filter(Boolean).join("<br>");
+
+    if (j3) {
+      addBlock(block("border-l-4 border-green-400 bg-white rounded-r-lg", "09:30 – Ateliers Pratico-Pratiques", j3, "Mercredi 10/09"));
+    }
+
+    addBlock(block("border-l-4 border-green-400 bg-white rounded-r-lg", "12:30 – Conclusion du séminaire"));
+  </script>
+</body>
+</html>

@@ -1,1 +1,0 @@
-# seminaire-la-rochelle
