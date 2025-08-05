@@ -26,7 +26,7 @@
 
         <a id="livret-link" href="#" class="inline-block mt-6">
           <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-2 transition">
-            📘 Livret d'accueil
+            Livret d'accueil
           </button>
         </a>
       </div>
@@ -43,7 +43,7 @@
     const nom = urlParams.get("nom");
 
     if (!nom) {
-      document.getElementById("error").textContent = "❌ Erreur : le paramètre 'nom' est obligatoire dans l'URL.";
+      document.getElementById("error").textContent = "Erreur : nous ne trouvons pas votre enregistrement.";
       document.getElementById("error").classList.remove("hidden");
     } else {
       document.getElementById("content").classList.remove("hidden");
