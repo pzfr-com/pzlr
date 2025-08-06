@@ -96,16 +96,19 @@
       addBlock(block("bg-green-50", "20:45 – Soirée"));
 
       // Jour 3
+      addBlock(block("bg-transparent", "", "", "Mercredi 10/09")); // Affiche uniquement la date
+      
       const j3 = ateliers.map((at, i) => {
         const salle = p.get(`3_${at}_S`);
         return salle ? `Atelier ${i+1} : <span class='font-medium text-blue-700'>${salle}</span>` : null;
       }).filter(Boolean).join("<br>");
-
+      
       if (j3) {
-        addBlock(block("bg-white", "09:30 – Ateliers Pratico-Pratiques", j3, "Mercredi 10/09"));
+        addBlock(block("bg-white", "09:30 – Ateliers Pratico-Pratiques", j3));
       }
-
+      
       addBlock(block("bg-white", "12:30 – Conclusion du séminaire"));
+
     }
   </script>
 </body>
