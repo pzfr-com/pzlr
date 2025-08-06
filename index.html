@@ -26,7 +26,7 @@
 
         <a id="livret-link" href="#" class="inline-block mt-6">
           <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-2 transition">
-            Livret d'accueil
+            📘 Livret d'accueil
           </button>
         </a>
       </div>
@@ -39,8 +39,8 @@
   </main>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const nom = urlParams.get("nom");
+    const p = new URLSearchParams(window.location.search);
+    const nom = p.get("nom");
 
     if (!nom) {
       document.getElementById("error").textContent = "Erreur : nous ne trouvons pas votre enregistrement.";
@@ -50,8 +50,7 @@
       document.getElementById("nom").textContent = nom;
 
       // Rediriger vers livret avec les mêmes paramètres
-      const params = urlParams.toString();
-      document.getElementById("livret-link").href = `livret-accueil.html?${params}`;
+      document.getElementById("livret-link").href = `livret-accueil.html?${p.toString()}`;
 
       const agenda = document.getElementById("agenda");
 
@@ -80,14 +79,14 @@
 
       const ateliers = ["1", "2", "3"];
       ateliers.forEach((at, i) => {
-        const salle = urlParams.get(`J2_${at}_S`);
-        const table = urlParams.get(`J2_${at}_T`);
+        const salle = p.get(`2_${at}_S`);
+        const table = p.get(`2_${at}_T`);
         if (salle && table) {
           addBlock(block("bg-white", `Atelier ${i+1}`, `Salle : ${salle}, Table : ${table}`));
         }
       });
 
-      const team = urlParams.get("J2_4_G");
+      const team = p.get("2_4_G");
       if (team) {
         addBlock(block("bg-white", "14:15 – Team Building", `Groupe : ${team}`));
       }
@@ -97,7 +96,7 @@
 
       // Jour 3
       const j3 = ateliers.map((at, i) => {
-        const salle = urlParams.get(`J3_${at}_S`);
+        const salle = p.get(`3_${at}_S`);
         return salle ? `Atelier ${i+1} : <span class='font-medium text-blue-700'>${salle}</span>` : null;
       }).filter(Boolean).join("<br>");
 
