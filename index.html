@@ -21,19 +21,19 @@
     <div id="content" class="hidden">
       <div class="text-center mb-10">
         <h1 class="text-4xl font-bold text-gray-900">
-          Bienvenue <span id="nom" class="text-blue-600">Participant</span>
+          Bienvenue <span id="nom" class="text-red-600">Participant</span>
         </h1>
         <p class="text-gray-600 mt-2">Voici votre programme personnalisé pour le séminaire.</p>
 
         <a id="livret-link" href="#" class="inline-block mt-6">
-          <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-2 transition">
+          <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full px-6 py-2 transition">
             <i class="fa-solid fa-book"></i> Livret d'accueil
           </button>
         </a>
       </div>
 
       <section class="bg-white shadow-md rounded-xl p-6 mb-10">
-        <h2 class="text-2xl font-semibold text-blue-700 mb-4"><i class="fa-solid fa-calendar"></i> Mon agenda</h2>
+        <h2 class="text-2xl font-semibold text-red-700 mb-4"><i class="fa-solid fa-calendar"></i> Mon agenda</h2>
         <ol class="space-y-6" id="agenda"></ol>
       </section>
     </div>
@@ -58,7 +58,7 @@
       const block = (classes, title, content = "", extra = "") => `
         <li>
           ${extra ? `<time class="block text-sm text-gray-500 font-medium mt-4 mb-1">${extra}</time>` : ""}
-          <div class="${classes} p-4 rounded-lg shadow-sm border-l-4 border-blue-500">
+          <div class="${classes} p-4 rounded-lg shadow-sm border-l-4 border-red-500">
             <p class="font-semibold text-gray-800">${title}</p>
             ${content ? `<p class="text-sm text-gray-600 mt-1">${content}</p>` : ""}
           </div>
@@ -68,14 +68,14 @@
       const addBlock = (html) => agenda.insertAdjacentHTML('beforeend', html);
 
       // Jour 1
-      addBlock(block("bg-blue-50", "14:00 – Safety induction", "Introduction welcome, déroulé, safety moment", "Lundi 8/09"));
-      addBlock(block("bg-blue-50", "14:30 – Contexte Primagaz", "Ecosystem de Primagaz aujourd'hui"));
-      addBlock(block("bg-blue-50", "15:10 – Look Back", "Mise à l’honneur collaborateurs / équipes"));
-      addBlock(block("bg-blue-50", "16:00 – Primagaz d'aujourd'hui à demain"));
+      addBlock(block("bg-red-50", "14:00 – Safety induction", "Introduction welcome, déroulé, safety moment", "Lundi 8/09"));
+      addBlock(block("bg-red-50", "14:30 – Contexte Primagaz", "Ecosystem de Primagaz aujourd'hui"));
+      addBlock(block("bg-red-50", "15:10 – Look Back", "Mise à l’honneur collaborateurs / équipes"));
+      addBlock(block("bg-red-50", "16:00 – Primagaz d'aujourd'hui à demain"));
       addBlock(block("bg-green-50", "18:55 – Soirée", "1er retour : 23h25<br>2nd retour : 23h55"));
 
       // Jour 2
-      addBlock(block("bg-blue-50", "9:00 – Safety", "", "Mardi 9/09"));
+      addBlock(block("bg-red-50", "9:00 – Safety", "", "Mardi 9/09"));
       addBlock(block("bg-white", "09:15 – Culture Managériale", "Notre Levier de Réussite (Postures, Pratiques, Performance)"));
 
       const ateliers = ["1", "2", "3"];
@@ -104,7 +104,7 @@
 
       const j3 = ateliers.map((at, i) => {
         const salle = p.get(`3_${at}_S`);
-        return salle ? `Atelier ${i+1} : <span class='font-medium text-blue-700'>${salle}</span>` : null;
+        return salle ? `Atelier ${i+1} : <span class='font-medium text-red-700'>${salle}</span>` : null;
       }).filter(Boolean).join("<br>");
       
       if (j3) {
