@@ -14,16 +14,32 @@
   </button>
 </a>
   <!-- PAGE 1 -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 py-12 bg-gradient-to-br from-red-50 to-white">
-        <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 mb-8 h-auto" />
-	<h1 class="text-3xl md:text-5xl font-bold mb-2">PROGRAMME SÉMINAIRE STRATÉGIQUE</h1>
-    <p class="text-xl mb-4 text-gray-500">baseline du séminaire</p>
+<section class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 py-12 text-white"
+  style="background-image: url('https://images.unsplash.com/photo-1617111641010-39cc2d207f4b'); background-size: cover; background-position: center;">
+  
+  <!-- Overlay sombre pour lisibilité -->
+  <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+  <!-- Contenu -->
+  <div class="relative z-10 flex flex-col items-center">
+    <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 mb-8 h-auto" />
+    <h1 class="text-3xl md:text-5xl font-bold mb-2">PROGRAMME SÉMINAIRE STRATÉGIQUE</h1>
+    <p class="text-xl mb-4 text-gray-200">baseline du séminaire</p>
     <p class="text-lg mb-1">8 – 10 septembre</p>
     <p class="text-lg">La Rochelle</p>
-    <footer class="absolute bottom-6 text-sm text-gray-400 text-center">
-      Un problème ? Besoin d’info ? Contactez Marie-Agnès Linard au 06 08 27 39 01 ou Tom Charbonnel au XXX
-    </footer>
-  </section>
+  </div>
+
+  <!-- Flèche animée -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <i class="fa-solid fa-chevron-down text-white text-2xl animate-bounce"></i>
+  </div>
+
+  <!-- Footer contact -->
+  <footer class="absolute bottom-2 text-xs text-gray-200 text-center z-10 px-4">
+    Un problème ? Contactez Marie-Agnès Linard au 06 08 27 39 01 ou Tom Charbonnel au XXX
+  </footer>
+</section>
+
 
   <!-- PAGE 2 -->
   <section class="px-6 py-12 max-w-3xl mx-auto space-y-6">
@@ -74,6 +90,7 @@
 </script>
 </body>
 </html>
+
 
 
 
