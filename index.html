@@ -83,16 +83,16 @@
         const salle = p.get(`2_${at}_S`);
         const table = p.get(`2_${at}_T`);
         if (salle && table) {
-          addBlock(block("bg-white", `Atelier ${i+1}`, `Salle : ${salle}, Table : ${table}`));
+          addBlock(block("bg-red-50", `Atelier ${i+1}`, `Salle : ${salle}, Table : ${table}`));
         }
       });
 
       const team = p.get("2_4_G");
       if (team) {
-        addBlock(block("bg-white", "14:15 – Team Building", `Groupe : ${team}`));
+        addBlock(block("bg-red-50", "14:15 – Team Building", `Groupe : ${team}`));
       }
 
-      addBlock(block("bg-[#F6FAFF]", "18:15 – Inclusivité chez PZ"));
+      addBlock(block("bg-red-50", "18:15 – Inclusivité chez PZ"));
       addBlock(block("bg-[#F6FAFF]", "20:45 – Soirée"));
 
       // Jour 3
@@ -108,10 +108,10 @@
       }).filter(Boolean).join("<br>");
       
       if (j3) {
-        addBlock(block("bg-white", "09:30 – Ateliers Pratico-Pratiques", j3));
+        addBlock(block("bg-red-50", "09:30 – Ateliers Pratico-Pratiques", j3));
       }
       
-      addBlock(block("bg-white", "12:30 – Conclusion du séminaire"));
+      addBlock(block("bg-red-50", "12:30 – Conclusion du séminaire"));
 
     }
   </script>
