@@ -7,6 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-gray-800 font-sans">
+<a id="btn-retour" href="#" class="fixed top-4 left-4 z-50">
+  <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-4 py-2 text-sm shadow-lg">
+    	Retour à mon programme
+  </button>
+</a>
   <!-- PAGE 1 -->
   <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 py-12 bg-gradient-to-br from-blue-50 to-white">
         <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 mb-8 h-auto" />
@@ -62,5 +67,10 @@
 
     <p class="text-center text-blue-800 font-semibold mt-10">ON EST RAVI DE VIVRE AVEC VOUS CE SÉMINAIRE !<br><span class="text-sm text-gray-500">baseline du séminaire</span></p>
   </section>
+<script>
+  const retour = document.getElementById("btn-retour");
+  retour.href = "index.html" + window.location.search; 
+</script>
 </body>
 </html>
+
