@@ -96,8 +96,12 @@
       addBlock(block("bg-green-50", "20:45 – Soirée"));
 
       // Jour 3
-      addBlock(block("bg-transparent", "", "", "Mercredi 10/09")); // Affiche uniquement la date
-      
+      agenda.insertAdjacentHTML('beforeend', `
+        <li>
+          <time class="block text-sm text-gray-500 font-medium mt-4 mb-1">Mercredi 10/09</time>
+        </li>
+      `);
+
       const j3 = ateliers.map((at, i) => {
         const salle = p.get(`3_${at}_S`);
         return salle ? `Atelier ${i+1} : <span class='font-medium text-blue-700'>${salle}</span>` : null;
