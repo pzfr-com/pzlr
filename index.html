@@ -2,17 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Séminaire 2025 – Programme</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/abef069671.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Inter', sans-serif; }</style>
+  <style>body{font-family:'Inter',sans-serif}</style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <header class="bg-white shadow p-4 flex justify-center">
-    <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 h-auto" />
+    <img src="https://cdn.primagaz.fr/-/media/sites/france/settings/primagaz.svg" alt="Logo Séminaire" class="w-24 h-auto"/>
   </header>
 
   <main class="max-w-5xl mx-auto px-6 py-10">
@@ -23,7 +23,7 @@
         <h1 class="text-4xl font-bold text-gray-900">
           Bienvenue <span id="nom" class="text-red-600">Participant</span>
         </h1>
-        <p class="text-gray-600 mt-2">La Rochelle, 8-10 septembre 2025</p>
+        <p class="text-gray-600 mt-2">La Rochelle, 8–10 septembre 2025</p>
 
         <a id="livret-link" href="#" class="inline-block mt-6">
           <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full px-6 py-2 transition">
@@ -43,76 +43,107 @@
     const p = new URLSearchParams(window.location.search);
     const nom = p.get("nom");
 
+    const byDayLabel = (label) => `
+      <li>
+        <time class="block text-sm text-gray-500 font-medium mt-4 mb-1">${label}</time>
+      </li>
+    `;
+
+    const block = (classes, timeAndTitle, content = "") => `
+      <li>
+        <div class="${classes} p-4 rounded-lg shadow-sm border-l-4 border-red-500">
+          <p class="font-semibold text-gray-800">${timeAndTitle}</p>
+          ${content ? `<p class="text-sm text-gray-600 mt-1">${content}</p>` : ""}
+        </div>
+      </li>
+    `;
+
     if (!nom) {
       document.getElementById("error").textContent = "Erreur : nous ne trouvons pas votre enregistrement.";
       document.getElementById("error").classList.remove("hidden");
     } else {
       document.getElementById("content").classList.remove("hidden");
       document.getElementById("nom").textContent = nom;
-
-      // Rediriger vers livret avec les mêmes paramètres
       document.getElementById("livret-link").href = `livret-accueil.html?${p.toString()}`;
 
       const agenda = document.getElementById("agenda");
+      const add = (html) => agenda.insertAdjacentHTML("beforeend", html);
 
-      const block = (classes, title, content = "", extra = "") => `
-        <li>
-          ${extra ? `<time class="block text-sm text-gray-500 font-medium mt-4 mb-1">${extra}</time>` : ""}
-          <div class="${classes} p-4 rounded-lg shadow-sm border-l-4 border-red-500">
-            <p class="font-semibold text-gray-800">${title}</p>
-            ${content ? `<p class="text-sm text-gray-600 mt-1">${content}</p>` : ""}
-          </div>
-        </li>
-      `;
+      // -------- Lundi 8 septembre --------
+      add(byDayLabel("Lundi 8/09"));
+      add(block("bg-red-50", "12:40 – Déjeuner", "Salle OPS"));
+      add(block("bg-red-50", "14:00 – Plénière", "Salle Bacchus"));
+      add(block("bg-red-50", "15:40 – Pause"));
+      add(block("bg-red-50", "16:00 – Plénière"));
+      add(block("bg-red-50", "17:55 – Fin de plénière"));
+      add(block("bg-red-50", "18:55 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
+      add(block("bg-[#F6FAFF]", "19:30 – Soirée chill « à la cabane ostréicole »", "Avec orchestre live"));
+      add(block("bg-[#F6FAFF]", "23:25 – Retour 1er bus"));
+      add(block("bg-[#F6FAFF]", "23:55 – Retours autres bus"));
 
-      const addBlock = (html) => agenda.insertAdjacentHTML('beforeend', html);
+      // -------- Mardi 9 septembre --------
+      add(byDayLabel("Mardi 9/09"));
+      add(block("bg-red-50", "À partir de 06:30 – Petit-déjeuner", "Face au port"));
+      add(block("bg-red-50", "09:00 – Plénière", "Salle Bacchus"));
 
-      // Jour 1
-      addBlock(block("bg-red-50", "14:00 – Safety induction", "Introduction welcome, déroulé, safety moment", "Lundi 8/09"));
-      addBlock(block("bg-red-50", "14:30 – Contexte Primagaz", "Ecosystem de Primagaz aujourd'hui"));
-      addBlock(block("bg-red-50", "15:10 – Look Back", "Mise à l’honneur collaborateurs / équipes"));
-      addBlock(block("bg-red-50", "16:00 – Primagaz d'aujourd'hui à demain"));
-      addBlock(block("bg-[#F6FAFF]", "18:55 – Soirée", "1er retour : 23h25<br>2nd retour : 23h55"));
+      // Ateliers du mardi matin – BADGES (G_1..G_4)
+      const Gs = ["G_1","G_2","G_3"].map(k => ({k, v: p.get(k)})).filter(x => !!x.v);
+      add(block(
+        "bg-red-50",
+        "09:50 – Ateliers",
+        Gs.length
+          ? Gs.map((x, i) => `Table <span class="font-semibold text-red-700">${x.v}</span>`).join("<br>")
+          : ""
+      ));
+      add(block("bg-red-50", "11:00 – Pause"));
 
-      // Jour 2
-      addBlock(block("bg-red-50", "9:00 – Safety", "", "Mardi 9/09"));
-      addBlock(block("bg-red-50", "09:15 – Culture Managériale", "Notre Levier de Réussite (Postures, Pratiques, Performance)"));
+      // >>> Afficher à 11:10 le DERNIER atelier (G_4) s'il existe
+      const G4 = p.get("G_4");
+      add(block(
+        "bg-red-50",
+        "11:10 – Retour en ateliers",
+        G4 ? `Table <span class="font-semibold text-red-700">${G4}</span>` : ""
+      ));
 
-      const ateliers = ["1", "2", "3"];
-      ateliers.forEach((at, i) => {
-        const salle = p.get(`2_${at}_S`);
-        const table = p.get(`2_${at}_T`);
-        if (salle && table) {
-          addBlock(block("bg-red-50", `Atelier ${i+1}`, `Salle : ${salle}, Table : ${table}`));
-        }
-      });
+      add(block("bg-red-50", "12:30 – Retour en plénière", "Salle Bacchus"));
+      add(block("bg-red-50", "12:40 – Fin de la plénière"));
+      add(block("bg-red-50", "13:00 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
+      add(block("bg-red-50", "13:30 – Pique-nique", "Face à la mer"));
 
-      const team = p.get("2_4_G");
-      if (team) {
-        addBlock(block("bg-red-50", "14:15 – Team Building", `Groupe : ${team}`));
-      }
+      // Fort Boyard – groupe B (affiché seulement si B existe)
+      const B = p.get("B");
+      add(block(
+        "bg-red-50",
+        "14:15 – Et si on jouait à « Fort Boyard » ?",
+        B ? `Groupe : <span class="font-semibold text-red-700">${B}</span>` : ""
+      ));
 
-      addBlock(block("bg-red-50", "18:15 – Inclusivité chez PZ"));
-      addBlock(block("bg-[#F6FAFF]", "20:45 – Soirée"));
+      add(block("bg-red-50", "16:15 – Goûter", "Face à la mer"));
+      add(block("bg-red-50", "16:45 – Retour en bus à l’hôtel"));
+      add(block("bg-red-50", "18:30 – Départ vers l’aquarium", "Pour le spectacle"));
+      add(block("bg-red-50", "18:40 – Place au théâtre"));
+      add(block("bg-[#F6FAFF]", "20:15 – Déambulation privative dans l’aquarium", "Avec cocktail"));
+      add(block("bg-[#F6FAFF]", "21:30 – Cocktail dinatoire sur le rooftop", "Soirée DJ « Corsaires, sirènes & autres créatures de la mer »"));
+      add(block("bg-[#F6FAFF]", "01:45 – Clôture de la soirée"));
 
-      // Jour 3
-      agenda.insertAdjacentHTML('beforeend', `
-        <li>
-          <time class="block text-sm text-gray-500 font-medium mt-4 mb-1">Mercredi 10/09</time>
-        </li>
-      `);
+      // -------- Mercredi 10 septembre --------
+      add(byDayLabel("Mercredi 10/09"));
+      add(block("bg-red-50", "À partir de 06:30 – Petit-déjeuner", "Face au port"));
+      add(block("bg-red-50", "09:00 – Plénière", "Salle Bacchus"));
 
-      const j3 = ateliers.map((at, i) => {
-        const salle = p.get(`3_${at}_S`);
-        return salle ? `Atelier ${i+1} : <span class='font-medium text-red-700'>${salle}</span>` : null;
-      }).filter(Boolean).join("<br>");
-      
-      if (j3) {
-        addBlock(block("bg-red-50", "09:30 – Ateliers Pratico-Pratiques", j3));
-      }
-      
-      addBlock(block("bg-red-50", "12:30 – Conclusion du séminaire"));
+      // Ateliers du mercredi matin – A_1..A_3 (n'afficher que s'ils existent)
+      const A1 = p.get("A_1");
+      const A2 = p.get("A_2");
+      const A3 = p.get("A_3");
 
+      if (A1) add(block("bg-red-50", "09:10 – 1er atelier", `<span class="font-semibold text-red-700">${A1}</span>`));
+      if (A2) add(block("bg-red-50", "09:50 – 2e atelier", `<span class="font-semibold text-red-700">${A2}</span>`));
+      if (A3) add(block("bg-red-50", "10:30 – 3e atelier", `<span class="font-semibold text-red-700">${A3}</span>`));
+
+      add(block("bg-red-50", "11:10 – Plénière", "Salle Bacchus"));
+      add(block("bg-red-50", "11:25 – Q&A avec le Comité de Direction", "<a target='_blank' class='text-blue-700' href='https://primagaz.cc/qa-seminaire-pz-2025'>Posez vos questions ici</a>"));
+      add(block("bg-red-50", "12:25 – Clôture du séminaire"));
+      add(block("bg-red-50", "12:40 – Déjeuner (optionnel)", "Pour ceux qui le souhaitent – inscription obligatoire"));
     }
   </script>
 </body>
