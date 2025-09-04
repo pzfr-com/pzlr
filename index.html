@@ -76,7 +76,7 @@
       add(block("bg-red-50", "15:40 – Pause"));
       add(block("bg-red-50", "16:00 – Plénière"));
       add(block("bg-red-50", "17:55 – Fin de plénière"));
-      add(block("bg-red-50", "18:55 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
+      add(block("bg-[#F6FAFF]", "18:55 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
       add(block("bg-[#F6FAFF]", "19:30 – Soirée chill « à la cabane ostréicole »", "Avec orchestre live"));
       add(block("bg-[#F6FAFF]", "23:25 – Retour 1er bus"));
       add(block("bg-[#F6FAFF]", "23:55 – Retours autres bus"));
@@ -107,24 +107,24 @@
 
       add(block("bg-red-50", "12:30 – Retour en plénière", "Salle Bacchus"));
       add(block("bg-red-50", "12:40 – Fin de la plénière"));
-      add(block("bg-red-50", "13:00 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
-      add(block("bg-red-50", "13:30 – Pique-nique", "Face à la mer"));
+      add(block("bg-[#F6FAFF]", "13:00 – RDV départ des bus", "Sur le port, devant les grilles de l’hôtel"));
+      add(block("bg-[#F6FAFF]", "13:30 – Pique-nique", "Face à la mer"));
 
       // Fort Boyard – groupe B (affiché seulement si B existe)
       const B = p.get("B");
       add(block(
-        "bg-red-50",
+        "bg-[#F6FAFF]",
         "14:15 – Et si on jouait à « Fort Boyard » ?",
         B ? `Groupe : <span class="font-semibold text-red-700">${B}</span>` : ""
       ));
 
-      add(block("bg-red-50", "16:15 – Goûter", "Face à la mer"));
-      add(block("bg-red-50", "16:45 – Retour en bus à l’hôtel"));
+      add(block("bg-[#F6FAFF]", "16:15 – Goûter", "Face à la mer"));
+      add(block("bg-[#F6FAFF]", "16:45 – Retour en bus à l’hôtel"));
       add(block("bg-red-50", "18:30 – Départ vers l’aquarium", "Pour le spectacle"));
       add(block("bg-red-50", "18:40 – Place au théâtre"));
-      add(block("bg-[#F6FAFF]", "20:15 – Déambulation privative dans l’aquarium", "Avec cocktail"));
-      add(block("bg-[#F6FAFF]", "21:30 – Cocktail dinatoire sur le rooftop", "Soirée DJ « Corsaires, sirènes & autres créatures de la mer »"));
-      add(block("bg-[#F6FAFF]", "01:45 – Clôture de la soirée"));
+      add(block("bg-red-50", "20:15 – Déambulation privative dans l’aquarium", "Avec cocktail"));
+      add(block("bg-red-50", "21:30 – Cocktail dinatoire sur le rooftop", "Soirée DJ « Corsaires, sirènes & autres créatures de la mer »"));
+      add(block("bg-red-50", "01:45 – Clôture de la soirée"));
 
       // -------- Mercredi 10 septembre --------
       add(byDayLabel("Mercredi 10/09"));
